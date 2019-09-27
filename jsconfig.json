@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "*":["src/*"],
+            "src":["src/*"],
+            "components":["src/components/*"],
+            "containers":["src/containers/*"],
+            "configs":["src/configs/*"],
+            "middlewares":["src/middlewares/*"],
+            "res":["src/res/*"]
+        }
+    }
+}
