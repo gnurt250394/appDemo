@@ -74,17 +74,17 @@ import com.android.build.OutputFile
  *   extraPackagerArgs: []
  * ]
  */
-project.ext.sentryCli = [
-    logLevel: "debug",
-    flavorAware: true
-]
+// project.ext.sentryCli = [
+//     logLevel: "debug",
+//     flavorAware: true
+// ]
 project.ext.react = [
     entryFile: "index.js",
     enableHermes: false,  // clean and rebuild if changing
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
-apply from: "../../node_modules/react-native-sentry/sentry.gradle"
+// apply from: "../../node_modules/react-native-sentry/sentry.gradle"
 /**
  * Set this to true to create two separate APKs instead of one:
  *   - An APK that only works on ARM devices
