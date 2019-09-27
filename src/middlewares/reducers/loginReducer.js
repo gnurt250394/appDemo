@@ -5,12 +5,12 @@ const initialState = {}
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOGIN:
-      state = {
-        ...state
+      return {
+        ...state,
+
       }
-      break
     default:
-      break
+      return state
   }
 }
 export default loginReducer

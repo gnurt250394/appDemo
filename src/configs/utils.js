@@ -1,31 +1,43 @@
-import {  AsyncStore} from "react-native";
-const database ={
-
+import AsyncStorage from '@react-native-community/async-storage'
+const database = {
+  token: ''
 }
 const KEY = {
-    TOKEN:'',
+  TOKEN: ''
 }
-function  getItem(key) {
-    
+function getItem (key) {
+  try {
+    return AsyncStorage.getItem(key)
+  } catch (error) {}
 }
-function setItem(key,params) {
-    
+function setItem (key, value) {
+  try {
+     AsyncStorage.setItem(key, value)
+  } catch (error) {}
 }
-function removeItem(key) {
-    
+function removeItem (key) {
+  try {
+    AsyncStorage.removeItem(key)
+  } catch (error) {}
 }
-function setItemObject(key,params) {
-    
+function setItemObject (key, value) {
+  try {
+    let params = JSON.stringify(value)
+    AsyncStorage.setItem(key, params)
+  } catch (error) {}
 }
-function getItemObject(params) {
-    
+async function getItemObject (key) {
+  try {
+    let params = await AsyncStorage.getItem(key)
+    return JSON.parse(params)
+  } catch (error) {}
 }
-export default{
-    getItem,
-    setItem,
-    removeItem,
-    setItemObject,
-    getItemObject,
-    KEY,
-    database
+export default {
+  getItem,
+  setItem,
+  removeItem,
+  setItemObject,
+  getItemObject,
+  KEY,
+  database
 }
