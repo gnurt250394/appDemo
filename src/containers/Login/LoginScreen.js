@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text ,TouchableOpacity,TextInput} from 'react-native';
+import NavigationServices from 'routes/NavigationServices';
+import screenName from 'configs/screenName';
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -7,11 +9,18 @@ class LoginScreen extends Component {
     this.state = {
     };
   }
-
+  onLogin=()=>{
+      console.log(this.props)
+      NavigationServices.navigate(screenName.HomeStack)
+  }
   render() {
     return (
       <View>
-        <Text> LoginScreen </Text>
+        <TextInput value={'hihi'} />
+        <Text style={{color:'blue'}}> LoginScreen </Text>
+        <TouchableOpacity onPress={this.onLogin}>
+        <Text >click</Text>
+        </TouchableOpacity>
       </View>
     );
   }
