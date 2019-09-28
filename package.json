@@ -3,11 +3,19 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "android": "cd android && ./gradlew clean && cd../ && react-native run-android",
+    "ios": "cd ios && xcodebuild clean && cd../ && react-native run-ios",
+    "clean:android": "cd android && ./gradlew clean && cd../",
+    "clean:ios": "cd ios && xcodebuild clean && cd../",
+    "bundle": "npx jetify && cd android && ./gradlew bundleRelease && cd../",
+    "release": "npx jetify && cd android && ./gradlew assembleRelease && cd../",
+    "pod": "cd ios && pod install && cd../",
+    "pull": "git pull --rebase",
+    "install-debug": "cd android/app/build/outputs/apk/debug && adb install -r .\\app-debug.apk",
+    "install-release": "cd android/app/build/outputs/apk/release && adb install -r .\\app-release.apk"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",
@@ -21,6 +29,8 @@
     "react-native-screens": "^1.0.0-alpha.23",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.0.10",
+    "react-navigation-stack": "^1.9.1",
+    "react-navigation-tabs": "^2.5.5",
     "react-redux": "^7.1.1",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",

@@ -5,9 +5,9 @@ import Home from 'components/HomeComponent/Home';
 export class HomeScreen extends Component {
     render() {
         return (
-            <View>
-                <Home/>
-                <Text> textInComponent </Text>
+            <View style={{flex:1,
+            backgroundColor:'red'}}>
+                <Text> textInComponent dsafas</Text>
             </View>
         )
     }
