@@ -11,16 +11,22 @@ import { StyleSheet, View, Text } from 'react-native'
 import { Provider } from 'react-redux'
 import store from 'middlewares/stores'
 import * as Sentry from '@sentry/react-native'
+import { Transitioner } from 'react-navigation-stack'
 import RootView from './src/RootView'
+import NavigationServices from 'routes/NavigationServices'
+import AppContainer from 'routes/AppContainer'
 Sentry.init({
   dsn: 'https://a12ca466e88843da82d0c48da3116a77@sentry.io/1763978'
 })
 
-const App = () => {
+const App = (props) => {
   return (
     <Provider store={store}>
       <RootView>
-
+        
+        <AppContainer
+          uriPrefix="/app"
+          ref={ref => NavigationServices.setTopNavigator(ref)} />
       </RootView>
     </Provider>
   )
