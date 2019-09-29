@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, Text ,TouchableOpacity,TextInput} from 'react-native';
 import NavigationServices from 'routes/NavigationServices';
 import screenName from 'configs/screenName';
-
+import FlashMessage from 'library/FlashMessage';
+import { showMessage } from 'react-native-flash-message';
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
@@ -11,11 +12,18 @@ class LoginScreen extends Component {
   }
   onLogin=()=>{
       console.log(this.props)
-      NavigationServices.navigate(screenName.HomeStack)
+      showMessage({
+          type:'danger',
+          message:'hello',
+          icon:'danger',
+          description:'hihi',
+      })
+    //   NavigationServices.navigate(screenName.HomeStack)
   }
   render() {
     return (
       <View>
+     
         <TextInput value={'hihi'} />
         <Text style={{color:'blue'}}> LoginScreen </Text>
         <TouchableOpacity onPress={this.onLogin}>
