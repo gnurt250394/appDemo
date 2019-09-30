@@ -14,7 +14,7 @@ class RootView extends Component {
     const customProps = {
       style: {
         fontFamily: R.fonts.Light,
-        color: 'green'
+        color: R.colors.black
       }
     }
     for (let i = 0; i < components.length; i++) {
@@ -27,7 +27,7 @@ class RootView extends Component {
       components[i].render = function render() {
         let oldProps = this.props;
 
-        this.props = { ...this.props, style: [customProps.style] };
+        this.props = { ...this.props, style: [customProps.style, this.props && this.props.style && this.props.style] };
         try {
           return TextRender.apply(this, arguments);
         } finally {
