@@ -5,7 +5,7 @@
             "*":["src/*"],
             "src":["src/*"],
             "components":["src/components/*"],
-            "containers":["src/containers/*"],
+            "screens":["src/screens/*"],
             "configs":["src/configs/*"],
             "middlewares":["src/middlewares/*"],
             "res":["src/res/*"],
