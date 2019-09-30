@@ -1,9 +1,9 @@
 import { createStackNavigator } from 'react-navigation-stack'
 import { createAppContainer } from 'react-navigation'
 import screenName from 'configs/screenName'
-import HomeScreen from 'containers/HomeScreen'
+import HomeScreen from 'screens/HomeScreen'
 import { fromLeft, zoomIn, zoomOut ,fadeIn,fadeOut,flipX,flipY,fromBottom,fromRight,fromTop,} from 'react-navigation-transitions';
-import RegisterScreen from 'containers/Register/RegisterScreen';
+import RegisterScreen from 'screens/Register/RegisterScreen';
 const handleCustomTransition = ({ scenes }) => {
     const prevScene = scenes[scenes.length - 2];
     const nextScene = scenes[scenes.length - 1];
