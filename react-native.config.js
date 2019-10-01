@@ -1,6 +1,6 @@
 module.exports = {
     dependencies: {
-        // 'react-native-device-info': {
+        // '@react-native-community/viewpager': {
         //     platforms: {
         //         ios: null,
         //         android: null
