@@ -11,6 +11,7 @@ import R from 'res/R';
 import Container from 'library/Container';
 import { requestLogin } from 'configs/apis/requestAuthen';
 import status from 'configs/constants';
+import utils from 'configs/utils';
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
@@ -21,12 +22,14 @@ class LoginScreen extends Component {
   onLogin = async () => {
     let email = this.inputEmail.getValue()
     let password = this.inputPass.getValue()
-    
+
     this.setState({ isLoading: true })
     let res = await requestLogin(email, password)
     this.setState({ isLoading: false })
     if (res && res.code == status.SUCCESS) {
-      NavigationServices.navigate(screenName.HomeStack)
+      utils.setItem(utils.KEY.TOKEN,res.token)
+      // utils.setItem(utils.KEY.TOKEN,{a:'a'})
+      // NavigationServices.navigate(screenName.HomeStack)
     } else {
       showMessage({
         type: 'danger',
@@ -42,7 +45,10 @@ class LoginScreen extends Component {
 
     }, 0)
   };
-
+  Logout = async () => {
+    let a = await utils.getItem(utils.KEY.TOKEN)
+    
+  }
   render() {
     return (
       <Container scrollView={true} isLoading={this.state.isLoading}>
@@ -50,6 +56,10 @@ class LoginScreen extends Component {
         <InputAuthen placeholder="Mật khẩu" ref={ref => this.inputPass = ref} />
         <ButtonBase
           onPress={this.onLogin}
+          styleButton={styles.buttonLogin}
+          value="Đăng nhập" />
+        <ButtonBase
+          onPress={this.Logout}
           styleButton={styles.buttonLogin}
           value="Đăng nhập" />
       </Container>
