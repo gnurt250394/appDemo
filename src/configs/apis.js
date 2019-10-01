@@ -1,13 +1,45 @@
 import Axios from 'axios'
 import utils from './utils'
-const BASE_URL = 'http://'
-const BASE_URI = 'http://'
+const BASE_URL = 'http://10.0.40.23:8000/api/'
+const BASE_URI = 'http://10.0.40.23:8000/'
 const SERVER_TIMEOUT = 10000
 let constants = Axios.create({
   baseURL: BASE_URL,
   timeout: SERVER_TIMEOUT
 })
-function fetch (url, params) {
+function logError(error) {
+  console.log('error: ', error);
+  console.group
+    && console.group(
+      '%cAPI ERROR',
+      'color:white;font-weight:bold;background:red;padding:2px 6px',
+    );
+  if (error.response) {
+    const apiName = error.config.apiName || 'UNKNOWN';
+
+    console.log(apiName, error.response);
+    console.groupEnd && console.groupEnd()
+  } else if (error.request) {
+    const apiName = error.config.headers.X_HEADER_API_LOG || 'UNKNOWN';
+
+    console.log(apiName, error.request);
+    console.groupEnd && console.groupEnd()
+  } else {
+
+    console.log('API Error', error.message);
+    console.groupEnd && console.groupEnd()
+  }
+}
+function logResponse(res) {
+  console.group
+    && console.group(
+      '%cAPI Response',
+      'color:white;font-weight:bold;background:green;padding:2px 6px',
+    );
+  console.log('res: ', res)
+  console.groupEnd && console.groupEnd()
+}
+function fetch(url, params) {
   let headers = {
     'Content-Type': 'application/json'
   }
@@ -17,14 +49,14 @@ function fetch (url, params) {
   return constants
     .get(url, { params }, { headers })
     .then(res => {
-      console.log('res: ', res)
+      logResponse(res)
       return res.data
     })
     .catch(error => {
-      console.log('error: ', error.response)
+      logError(error)
     })
 }
-function put (url, params) {
+function put(url, params) {
   let headers = {
     'Content-Type': 'application/json'
   }
@@ -34,14 +66,14 @@ function put (url, params) {
   return constants
     .put(url, params, { headers })
     .then(res => {
-      console.log('res: ', res)
+       logResponse(res)
       return res.data
     })
     .catch(error => {
-      console.log('error: ', error.response)
+      logError(error)
     })
 }
-function post (url, params) {
+function post(url, params) {
   let headers = {
     'Content-Type': 'application/json'
   }
@@ -51,14 +83,15 @@ function post (url, params) {
   return constants
     .post(url, params, { headers })
     .then(res => {
-      console.log('res: ', res)
+       logResponse(res)
       return res.data
     })
     .catch(error => {
-      console.log('error: ', error.response)
+      logError(error)
+
     })
 }
-function removeRequest (url) {
+function removeRequest(url) {
   let headers = {
     'Content-Type': 'application/json'
   }
@@ -68,11 +101,11 @@ function removeRequest (url) {
   return constants
     .delete(url, { headers })
     .then(res => {
-      console.log('res: ', res)
+       logResponse(res)
       return res.data
     })
     .catch(error => {
-      console.log('error: ', error.response)
+      logError(error)
     })
 }
 export default {

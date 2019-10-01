@@ -9,24 +9,40 @@ import ButtonBase from 'components/ButtonBase';
 import InputAuthen from 'components/LoginComponent/InputAuthen';
 import R from 'res/R';
 import Container from 'library/Container';
+import { requestLogin } from 'configs/apis/requestAuthen';
+import status from 'configs/constants';
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true
     };
   }
-  onLogin = () => {
+  onLogin = async () => {
     let email = this.inputEmail.getValue()
     let password = this.inputPass.getValue()
     
-    showMessage({
-      type: 'danger',
-      message: 'hello',
-      icon: 'danger',
-      description: 'hihi',
-    })
-    NavigationServices.navigate(screenName.HomeStack)
+    this.setState({ isLoading: true })
+    let res = await requestLogin(email, password)
+    this.setState({ isLoading: false })
+    if (res && res.code == status.SUCCESS) {
+      NavigationServices.navigate(screenName.HomeStack)
+    } else {
+      showMessage({
+        type: 'danger',
+        message: 'Lỗi!',
+        icon: 'danger',
+        description: res.message,
+      })
+    }
   }
+  componentDidMount = () => {
+    setTimeout(() => {
+      this.setState({ isLoading: false })
+
+    }, 0)
+  };
+
   render() {
     return (
       <Container >
