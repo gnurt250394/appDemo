@@ -30,11 +30,12 @@ class Container extends Component {
         };
     }
     static getDerivedStateFromProps(props, state) {
-        if (props.isLoading !== state.isLoading) { 
+        if (props.isLoading !== state.isLoading) {
             return {
                 isLoading: props.isLoading
             };
         }
+        return null
     }
 
     render() {

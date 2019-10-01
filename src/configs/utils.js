@@ -5,32 +5,32 @@ const database = {
 const KEY = {
   TOKEN: ''
 }
-function getItem (key) {
+function getItem(key) {
   try {
     return AsyncStorage.getItem(key)
-  } catch (error) {}
+  } catch (error) { }
 }
-function setItem (key, value) {
+function setItem(key, value) {
   try {
-     AsyncStorage.setItem(key, value)
-  } catch (error) {}
+    AsyncStorage.setItem(key, value)
+  } catch (error) { }
 }
-function removeItem (key) {
+function removeItem(key) {
   try {
     AsyncStorage.removeItem(key)
-  } catch (error) {}
+  } catch (error) { }
 }
-function setItemObject (key, value) {
+function setItemObject(key, value) {
   try {
     let params = JSON.stringify(value)
     AsyncStorage.setItem(key, params)
-  } catch (error) {}
+  } catch (error) { }
 }
-async function getItemObject (key) {
+async function getItemObject(key) {
   try {
     let params = await AsyncStorage.getItem(key)
     return JSON.parse(params)
-  } catch (error) {}
+  } catch (error) { }
 }
 export default {
   getItem,
