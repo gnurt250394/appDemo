@@ -7,6 +7,7 @@ import HeaderDefault from 'components/HeaderDefault';
 import Container from 'library/Container';
 import utils, { width } from 'configs/utils';
 import Swiper from 'react-native-swiper'
+import ButtonBase from 'components/ButtonBase';
 class HomeScreen extends Component {
     constructor(props) {
         super(props)
@@ -39,6 +40,10 @@ class HomeScreen extends Component {
        NavigationServices.navigate(screenName.RegisterScreen)
 
     }
+    onLogout=()=>{
+        utils.removeItem(utils.KEY.TOKEN)
+        NavigationServices.navigate(screenName.AuthenStack)
+    }
     render() {
         return (
             <Container >
@@ -62,7 +67,7 @@ class HomeScreen extends Component {
                <TouchableOpacity onPress={this.onClick}>
                    <Text>Click</Text>
                </TouchableOpacity>
-                
+                <ButtonBase onPress={this.onLogout} value="Đăng xuất"/>
 
             </Container>
         )
