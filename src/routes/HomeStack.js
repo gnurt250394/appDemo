@@ -10,14 +10,14 @@ const handleCustomTransition = ({ scenes }) => {
     // Custom transitions go there
     if (prevScene
         && prevScene.route.routeName === screenName.HomeScreen
-        && nextScene.route.routeName === screenName.RegisterScreen) {
+        && nextScene.route.routeName === screenName.HomeScreen) {
         return zoomIn();
     } else if (prevScene
         && prevScene.route.routeName === 'ScreenB'
         && nextScene.route.routeName === 'ScreenC') {
         return zoomOut();
     }
-    return fromLeft();
+    return fromBottom();
 }
 const homeStack = createStackNavigator({
     [screenName.HomeScreen]: { screen: HomeScreen },

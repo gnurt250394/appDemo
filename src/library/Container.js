@@ -60,7 +60,7 @@ class Container extends Component {
                     iconLeft={iconLeft}
                 />
                 <StatusBar animated={true} backgroundColor={R.colors.defaultColor} barStyle="dark-content" />
-                <ContainerComponent style={ContainerComponent == ScrollView ? {} : { flex: 1 }} keyboardShouldPersistTaps="handled">
+                <ContainerComponent style={ContainerComponent == ScrollView ? styles.containerComponent : [{ flex: 1 }, styles.containerComponent]} keyboardShouldPersistTaps="handled">
                     <AnimatedLoader
                         visible={isLoading}
 
@@ -82,8 +82,17 @@ export default Container;
 
 
 const styles = StyleSheet.create({
+    containerComponent: {
+        borderTopLeftRadius: 15,
+        borderTopRightRadius:15,
+        backgroundColor: '#FFF',
+        paddingTop: 10,
+    },
     container: {
-        flex: 1
+        flex: 1,
+        paddingTop: 10,
+        paddingRight: 10,
+        paddingLeft: 10,
     },
     lottie: {
         width: 100,

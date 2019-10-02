@@ -44,10 +44,9 @@ export default withNavigation(HeaderDefault)
 
 const styles = StyleSheet.create({
     containerHeader: {
-        backgroundColor: R.colors.defaultColor,
+        // backgroundColor: R.colors.defaultColor,
         height: 55,
         alignItems: 'center',
-        paddingHorizontal: 10,
         flexDirection: 'row',
         elevation: 5,
         justifyContent: 'space-between',

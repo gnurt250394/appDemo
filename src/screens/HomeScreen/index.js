@@ -12,10 +12,10 @@ class HomeScreen extends Component {
         super(props)
         this.state = {
             data: [
-                { id: 1, name: 'hihi' },
-                { id: 2, name: 'hihi' },
-                { id: 3, name: 'hihi' },
-                { id: 4, name: 'hihi' },
+                { id: 1, name: 'hihi', label: 'green' },
+                { id: 2, name: 'hihi', label: 'blue' },
+                { id: 3, name: 'hihi', label: 'orange' },
+                { id: 4, name: 'hihi', label: 'red' },
             ],
             end: true,
         }
@@ -23,60 +23,47 @@ class HomeScreen extends Component {
         this.data = this.state.data.slice()
         this.color = ["red", "green", "blue", "orange"]
     }
-    checkScroll({ layoutMeasurement, contentOffset, contentSize }) {
-        console.log('contentSize: ', contentSize);
-        console.log('layoutMeasurement: ', layoutMeasurement);
-        console.log('contentOffset: ', contentOffset);
-        // if (this.state.data.length >= this.length * 3)
-        //     this.setState(prevState => ({
-        //         data: prevState.data.slice(this.length * 2)
-        //     }))
-
-        // if (contentOffset.x <= this.props.offset) {
-        //     this.setState(prevState => ({
-        //         data: [...prevState.data, ...this.data],
-        //     }), () => this.infListRef.scrollToIndex({ index: this.length, animated: false }))
-        // }
-        // if (layoutMeasurement.width + contentOffset.x >= contentSize.width) {
-        //     this.setState(prevState => ({
-        //         data: [...prevState.data, ...this.data],
-        //         end: false
-        //     }))
-        // }
-        // else {
-        //     this.setState({
-        //         end: true
-        //     })
-        // }
-
-        if (parseInt(contentOffset.x + layoutMeasurement.width) == parseInt(contentSize.width)) {
-
-            this.infListRef.scrollToOffset({ offset: 0, animated: false })
-        }
-
-    }
-    getWrappableData = (data) => {
-        return [...data, data[0]];
-    }
+    currentIndex = 0
+    currentIndex2 = 0
     _renderItem = ({ item, index }) => {
-        console.log(this.color[index])
+
         return (
             <View key={index} style={{ backgroundColor: this.color[index], flex: 1, width: width }}>
                 <Text>{item.name}</Text>
+
             </View>
         )
     }
     _keyExtractor = (item, index) => `${index}`
+    onClick = () => {
+       NavigationServices.navigate(screenName.RegisterScreen)
+
+    }
     render() {
         return (
             <Container >
-                    <Swiper>
-                        {this.state.data.map((item, index) => {
-                            return (
-                                this._renderItem({ item, index })
-                            )
-                        })}
-                    </Swiper>
+                {/* <Swiper
+                    style={{ flex: 1 }}
+                    showsPagination={false}
+                    onIndexChanged={(index) => {
+                        console.log('index: ', index);
+
+                        this.currentIndex = index
+                    }}
+                    ref={ref => this.swiper = ref}
+                >
+
+                    {this.state.data.map((item, index) => {
+                        return (
+                            this._renderItem({ item, index })
+                        )
+                    })}
+                </Swiper> */}
+               <TouchableOpacity onPress={this.onClick}>
+                   <Text>Click</Text>
+               </TouchableOpacity>
+                
+
             </Container>
         )
     }
