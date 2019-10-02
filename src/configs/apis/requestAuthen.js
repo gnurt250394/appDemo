@@ -7,13 +7,13 @@ export const requestLogin = (username, password) => {
   }
   return apis.post(apis.PATH.LOGIN, params)
 }
-export const requestRegister =(username,password,fullname,age,phone)=>{
-    let params ={
-        username,
-        password,
-        fullname,
-        age,
-        phone
-    }
-    return apis.post(apis.PATH.REGISTER,params)
+export const requestRegister = (fullname, password, email, phone, gender) => {
+  let params = {
+    name:fullname,
+    password,
+    phone,
+    email,
+    gender
+  }
+  return apis.post(apis.PATH.REGISTER, params)
 }
