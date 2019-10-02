@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ImageBackground, ScrollView, Text } from 'react-native';
+import { View, StyleSheet, ImageBackground, ScrollView, StatusBar } from 'react-native';
 import HeaderDefault from 'components/HeaderDefault';
 import PropTypes from 'prop-types';
 import {
@@ -37,7 +37,15 @@ class Container extends Component {
         }
         return null
     }
+    componentDidMount = () => {
+        this.timeOut = setTimeout(() => {
+            this.setState({ isLoading: false })
+        }, 10000)
+    };
 
+    componentWillUnmount = () => {
+        clearTimeout(this.timeOut)
+    }
     render() {
         const { onPressLeft, onPressRight, valueRight, iconRight, valueLeft, iconLeft, scrollView, isLoading } = this.props
         const ContainerComponent = scrollView ? ScrollView : View
@@ -51,10 +59,11 @@ class Container extends Component {
                     valueLeft={valueLeft}
                     iconLeft={iconLeft}
                 />
-
-                <ContainerComponent keyboardShouldPersistTaps="handled">
+                <StatusBar animated={true} backgroundColor={R.colors.defaultColor} barStyle="dark-content" />
+                <ContainerComponent style={ContainerComponent == ScrollView ? {} : { flex: 1 }} keyboardShouldPersistTaps="handled">
                     <AnimatedLoader
                         visible={isLoading}
+
                         overlayColor="rgba(255,255,255,0.4)"
                         source={R.animations.loading}
                         animationStyle={styles.lottie}

@@ -7,8 +7,8 @@ import AuthenStack from './AuthenStack'
 import HomeStack from './HomeStack'
 
 const appNavigator = createAnimatedSwitchNavigator({
+    [screenName.HomeStack]:{screen:HomeStack},
     [screenName.AuthenStack]: { screen: AuthenStack },
-    [screenName.HomeStack]:{screen:HomeStack}
 },{
      transition: (
         <Transition.Together>

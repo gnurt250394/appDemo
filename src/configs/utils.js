@@ -1,10 +1,12 @@
 import AsyncStorage from '@react-native-community/async-storage'
+import { Dimensions } from 'react-native';
 const database = {
   token: ''
 }
 const KEY = {
   TOKEN: 'TOKEN'
 }
+export const { width, height } = Dimensions.get('window')
 async function getItem(key, object) {
   try {
     let params = await AsyncStorage.getItem(key)
