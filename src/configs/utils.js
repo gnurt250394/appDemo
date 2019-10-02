@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage'
+import { showMessage } from 'react-native-flash-message'
 const database = {
   token: ''
 }
@@ -25,11 +26,55 @@ function removeItem(key) {
     AsyncStorage.removeItem(key)
   } catch (error) { }
 }
-
+function alertWarn(description){
+  showMessage({
+    type:'warning',
+    icon:'warning',
+    message:'Cảnh báo',
+    description,
+  })
+}
+function alertSuccess(description){
+  showMessage({
+    type:'success',
+    icon:'success',
+    message:'Thông báo',
+    description,
+  })
+}
+function alertNone(description){
+  showMessage({
+    type:'none',
+    icon:'none',
+    message:'Thông báo',
+    description,
+  })
+}
+function alertInfo(description){
+  showMessage({
+    type:'info',
+    icon:'info',
+    message:'Thông tin',
+    description,
+  })
+}
+function alertDanger(description){
+  showMessage({
+    type:'danger',
+    icon:'danger',
+    message:'Lỗi!!!',
+    description,
+  })
+}
 export default {
   getItem,
   setItem,
   removeItem,
   KEY,
-  database
+  database,
+  alertDanger,
+  alertInfo,
+  alertNone,
+  alertSuccess,
+  alertWarn
 }

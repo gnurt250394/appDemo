@@ -16,7 +16,7 @@ class ButtonBase extends Component {
         const { onPress, styleButton, value, styleText, icon } = this.props
         return (
             <TouchableOpacity onPress={onPress} style={[styles.button,styleButton]}>
-                {value && <Text style={[styleText,styles.txt]}>{value}</Text>}
+                {value && <Text style={[styles.txt,styleText]}>{value}</Text>}
                 {icon && <Image source={icon} style={styles.icon} resizeMode="contain" />}
             </TouchableOpacity>
         )

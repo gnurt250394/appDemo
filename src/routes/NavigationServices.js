@@ -14,7 +14,7 @@ function navigate(routeName, params, action) {
 function pop() {
     _navigator.dispatch(StackActions.pop())
 }
-function reset(routeName, params, action) {
+function reset(routeName, params, actions) {
     _navigator.dispatch(StackActions.reset({
         routeName,
         params,

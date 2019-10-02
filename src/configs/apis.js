@@ -1,7 +1,7 @@
 import Axios from 'axios'
 import utils from './utils'
-const BASE_URL = 'http://10.0.40.23:8000/api/'
-const BASE_URI = 'http://10.0.40.23:8000/'
+const BASE_URL = 'http://10.0.40.15:8000/api/'
+const BASE_URI = 'http://10.0.40.15:8000/'
 const SERVER_TIMEOUT = 10000
 let constants = Axios.create({
   baseURL: BASE_URL,
@@ -29,6 +29,7 @@ function logError(error) {
     console.log('API Error', error.message);
     console.groupEnd && console.groupEnd()
   }
+  throw error
 }
 function logResponse(res) {
   console.group
@@ -66,7 +67,7 @@ function put(url, params) {
   return constants
     .put(url, params, { headers })
     .then(res => {
-       logResponse(res)
+      logResponse(res)
       return res.data
     })
     .catch(error => {
@@ -83,7 +84,7 @@ function post(url, params) {
   return constants
     .post(url, params, { headers })
     .then(res => {
-       logResponse(res)
+      logResponse(res)
       return res.data
     })
     .catch(error => {
@@ -101,7 +102,7 @@ function removeRequest(url) {
   return constants
     .delete(url, { headers })
     .then(res => {
-       logResponse(res)
+      logResponse(res)
       return res.data
     })
     .catch(error => {

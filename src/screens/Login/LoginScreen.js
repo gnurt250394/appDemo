@@ -16,7 +16,7 @@ class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true
+      isLoading: false
     };
   }
   onLogin = async () => {
@@ -27,41 +27,38 @@ class LoginScreen extends Component {
     let res = await requestLogin(email, password)
     this.setState({ isLoading: false })
     if (res && res.code == status.SUCCESS) {
-      utils.setItem(utils.KEY.TOKEN,res.token)
-      // utils.setItem(utils.KEY.TOKEN,{a:'a'})
-      // NavigationServices.navigate(screenName.HomeStack)
+      utils.setItem(utils.KEY.TOKEN, res.token)
+      utils.alertSuccess('Đăng nhập thành công')
+      NavigationServices.navigate(screenName.HomeStack)
     } else {
-      showMessage({
-        type: 'danger',
-        message: 'Lỗi!',
-        icon: 'danger',
-        description: res.message,
-      })
+      utils.alertDanger(res.message)
     }
   }
-  componentDidMount = () => {
-    setTimeout(() => {
-      this.setState({ isLoading: false })
 
-    }, 0)
-  };
-  Logout = async () => {
-    let a = await utils.getItem(utils.KEY.TOKEN)
-    
+  onRegister = () => {
+    NavigationServices.navigate(screenName.RegisterScreen)
+  }
+  onForgotPass = () => {
+    console.log(1111)
+    NavigationServices.navigate(screenName.ForgotPasswordScreen)
   }
   render() {
     return (
       <Container scrollView={true} isLoading={this.state.isLoading}>
-        <InputAuthen placeholder="Email / Số điện thoại" ref={ref => this.inputEmail = ref} />
-        <InputAuthen placeholder="Mật khẩu" ref={ref => this.inputPass = ref} />
+        <InputAuthen placeholder="Số điện thoại" ref={ref => this.inputEmail = ref} keyboardType="numeric" maxLength={10} />
+        <InputAuthen placeholder="Mật khẩu" ref={ref => this.inputPass = ref} secureTextEntry={true} />
         <ButtonBase
           onPress={this.onLogin}
           styleButton={styles.buttonLogin}
           value="Đăng nhập" />
         <ButtonBase
-          onPress={this.Logout}
-          styleButton={styles.buttonLogin}
-          value="Đăng nhập" />
+          onPress={this.onRegister}
+          styleButton={{
+            backgroundColor: R.colors.textColor,
+          }}
+          styleText={{ color: R.colors.black }}
+          value="Đăng ký" />
+        <Text onPress={this.onForgotPass} style={styles.txtForgotPass}>Quên mật khẩu?</Text>
       </Container>
     );
   }
@@ -71,6 +68,12 @@ export default LoginScreen;
 
 
 const styles = StyleSheet.create({
+  txtForgotPass: {
+    textDecorationLine: 'underline',
+    textAlign: 'center',
+    fontFamily: R.fonts.LightItalic,
+    paddingVertical: 10
+  },
   buttonLogin: {
     backgroundColor: R.colors.buttonColor,
     marginTop: 10,

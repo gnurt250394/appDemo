@@ -3,5 +3,7 @@ export default {
     HomeStack:'HomeStack',     // stack home
     LoginScreen:'Đăng nhập', 
     HomeScreen:'Trang chủ',
-    RegisterScreen:'Đăng ký'
+    RegisterScreen:'Đăng ký',
+    ForgotPasswordScreen:'Quên mật khẩu',
+    SplashScreen:'SplashScreen'
 }

@@ -10,7 +10,7 @@ const handleCustomTransition = ({ scenes }) => {
     // Custom transitions go there
     if (prevScene
         && prevScene.route.routeName === screenName.HomeScreen
-        && nextScene.route.routeName === screenName.RegisterScreen) {
+        && nextScene.route.routeName === screenName.HomeScreen) {
         return zoomIn();
     } else if (prevScene
         && prevScene.route.routeName === 'ScreenB'
