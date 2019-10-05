@@ -28,6 +28,7 @@ class LoginScreen extends Component {
     this.setState({ isLoading: false })
     if (res && res.code == status.SUCCESS) {
       utils.setItem(utils.KEY.TOKEN, res.token)
+      utils.database.token = res.token
       utils.alertSuccess('Đăng nhập thành công')
       NavigationServices.navigate(screenName.HomeStack)
     } else {

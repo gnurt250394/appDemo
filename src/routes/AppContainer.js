@@ -6,11 +6,12 @@ import screenName from 'configs/screenName'
 import AuthenStack from './AuthenStack'
 import HomeStack from './HomeStack'
 import SplashScreen from 'screens/SplashScreen';
+import DrawerStack from './DrawerStack';
 
 const appNavigator = createAnimatedSwitchNavigator({
-  [screenName.HomeStack]: { screen: HomeStack },
-  [screenName.SplashScreen]: { screen: SplashScreen },
   [screenName.AuthenStack]: { screen: AuthenStack },
+  [screenName.HomeStack]: { screen: DrawerStack },
+  [screenName.SplashScreen]: { screen: SplashScreen },
 }, {
   transition: (
     <Transition.Together>

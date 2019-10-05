@@ -92,6 +92,25 @@ function post(url, params) {
 
     })
 }
+function postForm(url, params) {
+  let headers = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      'Authorization': `Bearer ${utils.database.token}`
+    },
+  }
+ 
+  return constants
+    .post(url, params, { headers })
+    .then(res => {
+      logResponse(res)
+      return res.data
+    })
+    .catch(error => {
+      logError(error)
+
+    })
+}
 function removeRequest(url) {
   let headers = {
     'Content-Type': 'application/json'
@@ -112,12 +131,14 @@ function removeRequest(url) {
 export default {
   PATH: {
     LOGIN: 'login',
-    REGISTER: 'register'
+    REGISTER: 'register',
+    UPLOAD_IMAGE:'update_avatar'
   },
   fetch,
   put,
   post,
   removeRequest,
   BASE_URI,
-  BASE_URL
+  BASE_URL,
+  postForm
 }
