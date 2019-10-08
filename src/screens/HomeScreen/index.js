@@ -111,6 +111,7 @@ export default class HomeScreen extends Component {
                             }}
                             undoComponent={<View style={styles.functionButton}><Text style={{ color: 'white' }}>Undo</Text></View>}
                             onUndoPressed={(id) => {
+                                console.log('id: ', id);
                                 // Alert.alert('do something')
                             }}
                             clearComponent={<View style={styles.functionButton}><Text style={{ color: 'white' }}>Clear</Text></View>}
@@ -127,6 +128,7 @@ export default class HomeScreen extends Component {
                                 )
                             }}
                             strokeWidthComponent={(w) => {
+                                console.log('w: ', w);
                                 return (<View style={styles.strokeWidthButton}>
                                     <View style={{
                                         backgroundColor: 'white', marginHorizontal: 2.5,
@@ -143,19 +145,22 @@ export default class HomeScreen extends Component {
                                     folder: "RNSketchCanvas",
                                     filename: String(Math.ceil(Math.random() * 100000000)),
                                     transparent: true,
-                                    imageType: "png"
+                                    imageType: "png",
+                                    // cropToImageSize:true
                                 }
                             }}
+                            minStrokeWidth={100}
                             onSketchSaved={async (success, path) => {
                                 let res = await uploadImage(path)
-                                if(res != 401){
-                                    utils.alertDanger(res.message)
-                                }else{
+                                console.log('res: ', res);
+                                if (res.code == 200) {
                                     utils.alertSuccess('Cập nhật ảnh thành công')
+                                } else {
+                                    utils.alertDanger(res.message)
                                 }
                                 // if(res && res.)
                                 console.log('path: ', path);
-                                
+
                             }}
                             onPathsChange={(pathsCount) => {
                                 console.log('pathsCount', pathsCount)
@@ -290,12 +295,12 @@ export default class HomeScreen extends Component {
                             }}
                             onSketchSaved={async (success, path) => {
                                 let res = await uploadImage(path)
-                                if(res != 401){
-                                    utils.alertDanger(res.message)
-                                }else{
+                                if (res.code == 200) {
                                     utils.alertSuccess('Cập nhật ảnh thành công')
+                                } else {
+                                    utils.alertDanger(res.message)
                                 }
-                                
+
                             }}
                             onStrokeEnd={(path) => {
                                 this.canvas2.addPath(path)
@@ -350,12 +355,12 @@ export default class HomeScreen extends Component {
                             }}
                             onSketchSaved={async (success, path) => {
                                 let res = await uploadImage(path)
-                                if(res != 401){
-                                    utils.alertDanger(res.message)
-                                }else{
+                                if (res.code == 200) {
                                     utils.alertSuccess('Cập nhật ảnh thành công')
+                                } else {
+                                    utils.alertDanger(res.message)
                                 }
-                                
+
                             }}
                             onStrokeEnd={(path) => {
                                 this.canvas1.addPath(path)
@@ -441,12 +446,13 @@ export default class HomeScreen extends Component {
                                 }}
                                 onSketchSaved={async (success, path) => {
                                     let res = await uploadImage(path)
-                                    if(res != 401){
-                                        utils.alertDanger(res.message)
-                                    }else{
+                                    console.log('res: ', res);
+                                    if (res.code == 200) {
                                         utils.alertSuccess('Cập nhật ảnh thành công')
+                                    } else {
+                                        utils.alertDanger(res.message)
                                     }
-                                    
+
                                 }}
                                 onPathsChange={(pathsCount) => {
                                     console.log('pathsCount', pathsCount)
@@ -511,10 +517,11 @@ export default class HomeScreen extends Component {
                             onSketchSaved={async (success, path) => {
                                 console.log('path: ', path);
                                 let res = await uploadImage(path)
-                                if(res != 401){
-                                    utils.alertDanger(res.message)
-                                }else{
+                                console.log('res: ', res);
+                                if (res.code == 200) {
                                     utils.alertSuccess('Cập nhật ảnh thành công')
+                                } else {
+                                    utils.alertDanger(res.message)
                                 }
                             }}
                             onPathsChange={(pathsCount) => {
@@ -584,10 +591,11 @@ export default class HomeScreen extends Component {
                             }}
                             onSketchSaved={async (success, path) => {
                                 let res = await uploadImage(path)
-                                if(res != 401){
-                                    utils.alertDanger(res.message)
-                                }else{
+                                console.log('res: ', res);
+                                if (res.code == 200) {
                                     utils.alertSuccess('Cập nhật ảnh thành công')
+                                } else {
+                                    utils.alertDanger(res.message)
                                 }
                             }}
                             onPathsChange={(pathsCount) => {

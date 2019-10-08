@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Animated } from 'react-native';
+import { View, Text, ScrollView, Animated, StyleSheet } from 'react-native';
 import utils, { height } from 'configs/utils';
 import NavigationServices from 'routes/NavigationServices';
 import screenName from 'configs/screenName';
@@ -55,10 +55,10 @@ class SplashScreen extends Component {
           )}
           overScrollMode="never"
         >
-          <Animated.View style={{ flex: 1}}>
+          <Animated.View style={{ flex: 1 }}>
             <PDFView
               fadeInDuration={250.0}
-              style={{ flex: 1 ,height:height}}
+              style={{ flex: 1, height: height }}
               resource={'https://www.antennahouse.com/XSLsample/pdf-v32/Sample-multi-pdf3.pdf'}
               resourceType={'url'}
               onLoad={() => console.log(`PDF rendered from ${resourceType}`)}

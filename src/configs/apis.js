@@ -94,12 +94,12 @@ function post(url, params) {
 }
 function postForm(url, params) {
   let headers = {
-    headers: {
-      "Content-Type": "multipart/form-data",
-      'Authorization': `Bearer ${utils.database.token}`
-    },
+    "Content-Type": "multipart/form-data",
   }
- 
+  if (utils.database.token) {
+    headers.Authorization = `Bearer ${utils.database.token}`
+  }
+
   return constants
     .post(url, params, { headers })
     .then(res => {
@@ -132,7 +132,7 @@ export default {
   PATH: {
     LOGIN: 'login',
     REGISTER: 'register',
-    UPLOAD_IMAGE:'update_avatar'
+    UPLOAD_IMAGE: 'update_avatar'
   },
   fetch,
   put,

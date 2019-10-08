@@ -59,7 +59,7 @@ class Container extends Component {
                     valueLeft={valueLeft}
                     iconLeft={iconLeft}
                 />
-                <StatusBar animated={true} backgroundColor={R.colors.defaultColor} barStyle="dark-content" />
+                <StatusBar animated={true} backgroundColor={'#1e82b2'} barStyle="dark-content" />
                 <ContainerComponent style={ContainerComponent == ScrollView ? styles.containerComponent : [{ flex: 1 }, styles.containerComponent]} keyboardShouldPersistTaps="handled">
                     <AnimatedLoader
                         visible={isLoading}
