@@ -60,7 +60,9 @@ class Container extends Component {
                     iconLeft={iconLeft}
                 />
                 <StatusBar animated={true} backgroundColor={'#1e82b2'} barStyle="dark-content" />
-                <ContainerComponent style={ContainerComponent == ScrollView ? styles.containerComponent : [{ flex: 1 }, styles.containerComponent]} keyboardShouldPersistTaps="handled">
+                <ContainerComponent
+                    style={ContainerComponent == ScrollView ? styles.containerComponent : [{ flex: 1 }, styles.containerComponent]}
+                    keyboardShouldPersistTaps="handled">
                     <AnimatedLoader
                         visible={isLoading}
 
@@ -84,7 +86,7 @@ export default Container;
 const styles = StyleSheet.create({
     containerComponent: {
         borderTopLeftRadius: 15,
-        borderTopRightRadius:15,
+        borderTopRightRadius: 15,
         backgroundColor: '#FFF',
         paddingTop: 10,
     },
